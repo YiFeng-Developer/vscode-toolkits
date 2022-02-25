@@ -1,0 +1,68 @@
+{
+  "name": "developer-tool",
+  "displayName": "developer-tool",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.64.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:package.json",
+    "onLanguage:typescript",
+    "onLanguage:javascript"
+  ],
+  "main": "./dist/extension.js",
+  "scripts": {
+    "vscode:prepublish": "yarn run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "test-compile": "tsc -p ./",
+    "test-watch": "tsc -watch -p ./",
+    "pretest": "yarn run test-compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "developer-tool.diff-file-business",
+        "title": "对比业态文件",
+        "icon": "$(selection)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+				{
+					"command": "developer-tool.diff-file-business",
+					"group": "navigation@-99"
+				}
+      ]
+    }
+  },
+  "devDependencies": {
+    "@types/enhanced-resolve": "^3.0.7",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.64.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "eslint": "^7.27.0",
+    "mocha": "^8.4.0",
+    "ts-loader": "^9.2.2",
+    "typescript": "^4.3.2",
+    "vscode-test": "^1.5.2",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
+  },
+  "dependencies": {
+    "ts-morph": "^13.0.3",
+    "ts-unused-exports": "^8.0.0",
+    "tsconfig-paths": "^3.12.0",
+    "umd-compat-loader": "^2.1.2",
+		"globby": "^11.0.4"
+  }
+}
